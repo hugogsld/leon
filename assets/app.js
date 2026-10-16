@@ -679,7 +679,7 @@ async function finalAnswer(raw, force = false) {
   refreshProgress();
   renderReponse();
   sfx.beep(true);
-  toast("Vérifie ta réponse, puis passe à la question suivante pour la valider");
+  setTimeout(() => { if (cur().q.id === qid) verifyAnswer(); }, 400);
 }
 async function verifyAnswer() {
   const { d, e, q, w } = cur();
@@ -1860,6 +1860,7 @@ document.addEventListener("click", async (e) => {
   if (vm) { setVmode(vm.dataset.vmode); return; }
   const et = t.closest("[data-ex]");
   if (et) { pendingAnswer = false; go("exo", { id: view.id, ex: et.dataset.ex, q: 0 }); return; }
+  if (t.closest('[data-act="verify"]')) { verifyAnswer(); return; }
   const qt = t.closest("[data-q]");
   if (qt) { pendingAnswer = false; view.q = +qt.dataset.q; render(); return; }
 
