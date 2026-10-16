@@ -291,7 +291,7 @@ function popDemoHTML() {
 async function tryGaze() {
   const ok = await gaze.start(true);
   // calibrage fait : on arrive directement dans le Drive, le regard actif
-  if (ok && view.name === "intro") go("drive");
+  if (ok && view.name === "intro") { go("drive"); setTimeout(openDeposit, 350); } // on enchaîne sur le dépôt du devoir
 }
 function pop(btn) {
   btn.classList.add("popped");
@@ -1896,7 +1896,7 @@ document.addEventListener("click", async (e) => {
 });
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && $("#modal-root").innerHTML) closeModal();
-  else if (e.key === "Escape" && view.name === "intro" && !gaze.on) go("drive");
+  else if (e.key === "Escape" && view.name === "intro" && !gaze.on) { go("drive"); setTimeout(openDeposit, 350); }
   if (e.key === "Enter" && e.target.matches?.("[data-exo], [data-folder], [data-devoir]")) e.target.click();
   if (e.code === "Space" && view.name !== "landing" && !e.target.closest("input,textarea,[contenteditable]") && !$("#modal-root").innerHTML) {
     e.preventDefault();
