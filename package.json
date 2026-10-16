@@ -1,0 +1,10 @@
+{
+  "name": "mon-cahier-perroquet",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.135.0",
+    "@vercel/blob": "^2.0.0",
+    "@vercel/functions": "^3.10.1"
+  }
+}
